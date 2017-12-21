@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* 选项值 */
+$none: none;
+$auto: auto;
+$FFF: #FFF;
+$color: #111;
+$red: #ff0000;
+// 颜色定义规范
+$color-background:#222;
+$color-background-d:rgba(0, 0, 0, 0.3);
+$color-highlight-background:#333;
+$color-dialog-background:#666;
+$color-theme:#ffcd32;
+$color-theme-d:rgba(255, 205, 49, 0.5);
+$color-sub-theme:#d93f30;
+$color-text:#fff;
+$color-text-d:rgba(255, 255, 255, 0.3);
+$color-text-l:rgba(255, 255, 255, 0.5);
+$color-text-ll:rgba(255, 255, 255, 0.8);
+/* 调用css */
+.marginauto{ margin: 0 auto;}
+.block{ display: block; }
+.block-in{ display: inline-block; }
+.none{ display: none; }
+.clear{clear:both;}
+.over{ overflow: hidden;}
+.cursor{cursor: pointer; }
+.resizenone{resize: none;outline: none;}
+.text-justify{ text-align:Justify; text-justify:inter-ideograph; }
+.text-left{ text-align: left; } .text-center{ text-align: center; } .text-right{ text-align: right; }//左对齐，右对齐，中间对齐
+.pull-left{ float: left; }.pull-right{ float: right }.rel{ position: relative; }.abs{ position: absolute; }
+.font-arial{ font-family: arial, sans-serif; }
+.font-yahei{ font-family:"microsoft yahei", "Microsoft YaHei", Tahoma, Helvetica, Arial, sans-serif;}
+.clearfix{zoom:1;}
+.clearfix:after{content:" ";display:block;height:0;clear:both;visibility:hidden;}
+.over-yichu{ overflow: hidden;white-space: nowrap;-webkit-text-overflow:ellipsis;-khtml-text-overflow: ellipsis;
+    -icab-text-overflow: ellipsis; -moz-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; } //文字溢出，显示“...”
+.wenbenzhehang{ text-wrap: wrap; white-space: pre-wrap; white-space: -moz-pre-wrap; word-wrap: break-word; } //文字排版 文字两端对齐
+.no-wrap{text-overflow: ellipsis; overflow: hidden;white-space: nowrap}
+@mixin h($h:20px){ height: $h; line-height: $h; }//高度和行高
+@mixin opacity($alpha:50,$opacity:0.5){ filter: alpha(opacity=$alpha); opacity:$opacity; }
+@mixin back($src:0,$repeat:no-repeat,$left:left,$top:top){ background:url($src) $repeat $left $top; }
+@mixin backcolor($backcolor:#F00){ background-color: $backcolor; }
+@mixin backimage($origin: top, $startColor: #000, $endColor: #FFF){ background-color:$startColor/2 + $endColor/2; background-image: -webkit-linear-gradient($origin, $startColor, $endColor);
+    background-image:-moz-linear-gradient($origin, $startColor, $endColor); background-image: -o-linear-gradient($origin, $startColor, $endColor);
+    background-image: -ms-linear-gradient($origin, $startColor, $endColor); background-image: linear-gradient($origin, $startColor, $endColor); }//颜色渐变
+@mixin backimage-yuan($origin: top, $startColor: #000, $endColor: #FFF){ background-color:$startColor/2 + $endColor/2; background-image: -webkit-radial-gradient($origin, $startColor, $endColor);
+    background-image:-moz-radial-gradient($origin, $startColor, $endColor); background-image: -o-radial-gradient($origin, $startColor, $endColor);
+    background-image: -ms-radial-gradient($origin, $startColor, $endColor); background-image: radial-gradient($origin, $startColor, $endColor); }//颜色渐变
+@mixin box-shadow ($x: 0, $y: 0, $blur: 1px, $color: #000){ -moz-box-shadow: $x $y $blur $color; box-shadow: $x $y $blur $color; }
+@mixin text-shadow ($x: 0, $y: 0, $blur: 1px, $color: #000){ -moz-text-shadow: $x $y $blur $color; text-shadow: $x $y $blur $color; }
+@mixin border($bor-color:#000,$bor-width:1px,$bor-style:solid){ border: $bor-color $bor-width $bor-style; }
+@mixin border-radius($radius: 50%){ -webkit-border-radius: $radius; -moz-border-radius: $radius; border-radius: $radius;}
+@mixin border-radius-custom ($topleft: 50%, $topright: 50%, $bottomleft: 50%, $bottomright: 50%){ -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
+    -moz-border-radius: $topleft $topright $bottomright $bottomleft; border-radius: $topleft $topright $bottomright $bottomleft; }//圆角：上左、上右、下右、下左;
+@mixin transition($all:all,$time: .5s,$linear: linear){ -webkit-transition: $all $time $linear; -moz-transition: $all $time $linear; -o-transition: $all $time $linear;
+    transition: $all $time $linear; }
+@mixin transform($rotate:0deg,$scaleX:1,$scaleY:1,$skew:0deg,$translateX:0px,$translateY:0px){ transform: rotate($rotate) scale($scaleX,$scaleY) skew($skew) translate($translateX,$translateY);
+    -ms-transform: rotate($rotate) scale($scaleX,$scaleY) skew($skew) translate($translateX,$translateY);
+    -moz-transform: rotate($rotate) scale($scaleX,$scaleY) skew($skew) translate($translateX,$translateY);
+    -webkit-transform:rotate($rotate) scale($scaleX,$scaleY) skew($skew) translate($translateX,$translateY);
+    -o-transform: rotate($rotate) scale($scaleX,$scaleY) skew($skew) translate($translateX,$translateY); }// 动画角度、大小、变形、平移
+@mixin animation($an-name:0,$an-time:1s,$an-quxian:linear,$an-yanchi:0s,$an-count:none,$an-direction:normal){ animation: $an-name $an-time $an-quxian $an-yanchi $an-count $an-direction;
+    -webkit-animation: $an-name $an-time $an-quxian $an-yanchi $an-count $an-direction; }// 动画：动画名称、动画时间、动画曲线、动画延迟、动画次数、是否轮流播放动画
+@mixin an-fill-mode($zhuangtai:forwards){ animation-fill-mode: $zhuangtai; } //动画完成后的状态：1、none 不改变默认行为。 2、forwards 动画完成后，保持最后一个属性 3、backwards 动画结束，使用开始属性值 4、both 前后都应用属性
+@mixin sanjiao($width: 8px, $pram1: transparent, $pram2: transparent, $pram3: transparent, $pram4: transparent){ width: 0; height: 0; border-style: solid; border-width: $width;
+    border-color: $pram1 $pram2 $pram3 $pram4; }
+@mixin bg-image($url) { background-image: url($url + "@2x.png");
+    @media all and (-webkit-min-device-pixel-ratio : 3), all and (min-device-pixel-ratio: 3) { background-image: url($url + "@3x.png"); }
+}
+@mixin font-dpr($font-size){font-size: $font-size; [data-dpr="2"] & {font-size: $font-size * 2;} [data-dpr="3"] & {font-size: $font-size * 3;} }

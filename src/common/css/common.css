@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/* 选项值 */
+/* 调用css */
+.marginauto {
+  margin: 0 auto; }
+
+.block {
+  display: block; }
+
+.block-in {
+  display: inline-block; }
+
+.none {
+  display: none; }
+
+.clear {
+  clear: both; }
+
+.over {
+  overflow: hidden; }
+
+.cursor {
+  cursor: pointer; }
+
+.resizenone {
+  resize: none;
+  outline: none; }
+
+.text-justify {
+  text-align: Justify;
+  text-justify: inter-ideograph; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.pull-left {
+  float: left; }
+
+.pull-right {
+  float: right; }
+
+.rel {
+  position: relative; }
+
+.abs {
+  position: absolute; }
+
+.font-arial {
+  font-family: arial, sans-serif; }
+
+.font-yahei {
+  font-family: "microsoft yahei", "Microsoft YaHei", Tahoma, Helvetica, Arial, sans-serif; }
+
+.clearfix {
+  zoom: 1; }
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.over-yichu {
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-text-overflow: ellipsis;
+  -khtml-text-overflow: ellipsis;
+  -icab-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis; }
+
+.wenbenzhehang {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word; }
+
+.no-wrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+
+/*# sourceMappingURL=common.css.map */
