@@ -1,6 +1,6 @@
-import { commonParams, options } from './config'
+import {commonParams, options} from './config'
 import jsonp from 'common/js/jsonp'
-import { getUid } from 'common/js/uid'
+import {getUid} from 'common/js/uid'
 import axios from 'axios'
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -17,7 +17,6 @@ export function getLyric(mid) {
         pcachetime: +new Date(),
         format: 'json'
     })
-
     return axios.get(url, {
         params: data
     }).then((res) => {
@@ -35,7 +34,6 @@ export function getSongsUrl(songs) {
         mids.push(song.mid)
         types.push(0)
     })
-
     const data = Object.assign({}, commonParams, {
         g_tk: 5381,
         format: 'json',
