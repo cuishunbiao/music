@@ -5,11 +5,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+
     import MusicList from 'components/music-list/music-list'
-    import { getMusicList } from 'api/rank'
-    import { ERR_OK } from 'api/config'
-    import { mapGetters } from 'vuex'
-    import { createSong, isValidMusic, processSongsUrl } from 'common/js/song'
+    import {mapGetters} from 'vuex'
+    import {getMusicList} from 'api/rank'
+    import {ERR_OK} from 'api/config'
+    import {createSong, isvalidMusic, processSongsUrl} from 'common/js/song'
+
     export default {
         computed: {
             title() {
@@ -32,7 +34,7 @@
             }
         },
         created() {
-            this._getMusicList()
+            this._getMusicList();
         },
         methods: {
             _getMusicList() {
@@ -42,7 +44,7 @@
                 }
                 getMusicList(this.topList.id).then((res) => {
                     if (res.code === ERR_OK) {
-                        processSongsUrl(this._normalizeSongs(res.songlist)).then((songs) => {
+                        processSongsUrl(this._normalizeSongs(res.songlist)).then((songs)=>{
                             this.songs = songs
                         })
                     }
@@ -52,21 +54,28 @@
                 let ret = []
                 list.forEach((item) => {
                     const musicData = item.data
-                    if (isValidMusic(musicData)) {
+                    if (musicData.songid && musicData.albumid) {
                         ret.push(createSong(musicData))
                     }
                 })
-                return ret
+                return ret;
             }
         },
         components: {
             MusicList
         }
     }
+
 </script>
 
 <style lang="scss" type="text/scss" scoped>
     @import "~common/sass/common";
-    .slide-enter-active, .slide-leave-active{ transition: all 0.3s ease}
-   .slide-enter, .slide-leave-to{ transform: translate3d(100%, 0, 0)}
+
+    .slide-enter-active, .slide-leave-active {
+        transition: all 0.3s ease
+    }
+
+    .slide-enter, .slide-leave-to {
+        transform: translate3d(100%, 0, 0)
+    }
 </style>

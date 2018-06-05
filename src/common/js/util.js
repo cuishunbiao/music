@@ -12,3 +12,23 @@ export function shuffle(arr) {
     }
     return _arr
 }
+
+/*
+* 先定义一个变量 timer
+* 返回一个新的函数（...args）并把参数传递进去
+* 先调用 timer setTimeout 延迟执行，
+* 如果在延迟期间又重新调用了 timer 的话，
+* 就会触发 clearTimerout
+* */
+export function debounce(func, delay) {
+    let timer
+
+    return function (...args) {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+            func.apply(this, args)
+        }, delay)
+    }
+}

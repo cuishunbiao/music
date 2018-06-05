@@ -10,8 +10,10 @@ const state = {
     mode: playMode.sequence,
     currentIndex: -1,
     disc: {},
+    topList:{},
     playHistory: [],
-    favoriteList: []
+    favoriteList: [],
+    searchHistory: loadSearch()
 }
 
 export default state

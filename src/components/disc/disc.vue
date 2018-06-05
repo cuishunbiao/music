@@ -6,10 +6,11 @@
 
 <script type="text/ecmascript-6">
     import MusicList from 'components/music-list/music-list'
-    import { getSongList } from 'api/recommend'
-    import { ERR_OK } from 'api/config'
-    import { mapGetters } from 'vuex'
-    import { createSong, isValidMusic, processSongsUrl } from 'common/js/song'
+    import {mapGetters} from 'vuex'
+    import {getSongList} from 'api/recommend'
+    import {ERR_OK} from 'api/config'
+    import {createSong} from 'common/js/song'
+
     export default {
         computed: {
             title() {
@@ -32,22 +33,21 @@
         },
         methods: {
             _getSongList() {
-                if (!this.disc.dissid) {
-                    this.$router.push('/recommend')
+                if(!this.disc.dissid){
+                    this.$router.push('/recommend');
                     return
                 }
                 getSongList(this.disc.dissid).then((res) => {
                     if (res.code === ERR_OK) {
-                        processSongsUrl(this._normalizeSongs(res.cdlist[0].songlist)).then((songs) => {
-                            this.songs = songs
-                        })
+                        this.songs = this._normalizeSongs(res.cdlist[0].songlist)
+                        console.log(this._normalizeSongs(res.cdlist[0].songlist));
                     }
                 })
             },
             _normalizeSongs(list) {
-                let ret = []
+                let ret = [];
                 list.forEach((musicData) => {
-                    if (isValidMusic(musicData)) {
+                    if (musicData.songid && musicData.albumid) {
                         ret.push(createSong(musicData))
                     }
                 })
@@ -62,8 +62,12 @@
 
 <style lang="scss" type="text/scss" scoped>
     @import "~common/sass/common";
-    .slide-enter-active, .slide-leave-active{
-    transition: all 0.3s}
-   .slide-enter, .slide-leave-to{
-    transform: translate3d(100%, 0, 0)}
+
+    .slide-enter-active, .slide-leave-active {
+        transition: all 0.3s
+    }
+
+    .slide-enter, .slide-leave-to {
+        transform: translate3d(100%, 0, 0)
+    }
 </style>

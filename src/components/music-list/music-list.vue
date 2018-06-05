@@ -17,7 +17,7 @@
         <Scroll :data="songs" @scroll="scroll" :listen-scroll="listenScroll"
                 :probe-type="probeType" class="list" ref="list">
             <div class="song-list-wrapper">
-                <song-list @select="selectItem" :songs="songs"></song-list>
+                <song-list :rank="rank" @select="selectItem" :songs="songs"></song-list>
             </div>
             <div class="loading-container" v-show="!songs.length">
                 <loading></loading>
@@ -31,12 +31,14 @@
     import Loading from 'base/loading/loading'
     import {prefixStyle} from 'common/js/dom'
     import {mapActions} from 'vuex'
-    import {selectPlay} from "../../store/actions";
+    import {selectPlay} from "../../store/actions"
+    import {playlistMixin} from 'common/js/mixin'
 
     const transform = prefixStyle('transform')
     const backdrop = prefixStyle('backdrop-filter')
 
     export default {
+        mixins: [playlistMixin],
         props: {
             bgImage: {
                 type: String,
@@ -49,6 +51,10 @@
             title: {
                 type: String,
                 default: ''
+            },
+            rank: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -73,6 +79,11 @@
             this.$refs.list.$el.style.top = `${this.imageHeight}px`
         },
         methods: {
+            handlePlaylist(playlist) {
+                const bottom = playlist.length > 0 ? '1.2rem' : ''
+                this.$refs.list.$el.style.bottom = bottom
+                this.$refs.list.refresh()
+            },
             //回退到上一级页面
             back() {
                 this.$router.back()
@@ -87,7 +98,7 @@
                 })
                 console.log(1);
             },
-            random(){
+            random() {
                 this.randomPlay({
                     list: this.songs
                 })
@@ -186,7 +197,7 @@
             background-size: cover;
             .play-wrapper {
                 @extend .abs;
-                bottom: 20px;
+                bottom: .5rem;
                 z-index: 50;
                 width: 100%;
                 color: $color-theme;

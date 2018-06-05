@@ -18,7 +18,7 @@ Vue.use(VuelazyLoad, {
     loading: require('common/images/default.png')
 })
 
-const historySongs = loadPlay()
+/*const historySongs = loadPlay()
 processSongsUrl(historySongs).then((songs) => {
     store.commit(SET_PLAY_HISTORY, songs)
 })
@@ -26,7 +26,7 @@ processSongsUrl(historySongs).then((songs) => {
 const favoriteSongs = loadFavorite()
 processSongsUrl(favoriteSongs).then((songs) => {
     store.commit(SET_FAVORITE_LIST, songs)
-})
+})*/
 
 new Vue({
     el: '#app',
